@@ -1,8 +1,6 @@
 import os
 os.system('cls')
 
-print("hello")
-
 weight = float(input("input your weight(kg)"))
 height = float(input("input your height(m)"))
 
