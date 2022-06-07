@@ -11,15 +11,10 @@ import random
 # after the guessing game the player has an option to play again and they type yes or no
 # The players tries and hints are counted, the player has unlimited tries but only 3 hints
 
-import os
-os.system('cls')
-
-
-
-
-
 run = True
 while run: # allowes the player to play the guessing game multipe times
+    import os
+    os.system('cls')
 
     # instructions
     print("guess a word")
@@ -28,23 +23,23 @@ while run: # allowes the player to play the guessing game multipe times
     print("if you want to give up just type quit")
     print(" ")
 
-    fruit_words = ["apple", "berry", "cherry", "strawberry", "watermelon", "pineapple", "lemon", "grape", "bannana", "grapefruit"] # the ten words
+    fruit_words = ["apple", "berry", "cherry", "strawberry", "watermelon", "pineapple", "lemon", "grape", "bannana", "grapefruit"] # My three lists of ten words
     computer_parts = ["CPU", "GPU", "Power supply", "RAM", "Heat sink", "motherboard", "coolant", "water cooled", "SSD", "hard drive"]
     Games = ["Call of duty", "Fortnite", "Minecraft", "Plants vs Zombies", "Bloons Tower Defence", "Clash Royale", "Clash of Clans", "Stumble Guys", "Ratchet and Clank", "Miles Morales"]
-    
+
     check = True
-    while check:
+    while check: # The while loop runs whilecheck is true
         try:    
-            list_pick = int(input("Enter 1 to guess fruits, 2 to guess computer parts, or 3 to guess games."))
+            list_pick = int(input("Enter 1 to guess fruits, 2 to guess computer parts, or 3 to guess games:"))
             if list_pick > 0 and list_pick < 4:
-                check = False
+                check = False # if list_pick is set equal to an intiger that is 1,2, or 3 the while loop ends
             else:
                 print("only enter 1, 2, or 3")
         except ValueError:
             print("Please enter a number")
         
-    if list_pick  == 1:
-        list = fruit_words
+    if list_pick  == 1: 
+        list = fruit_words 
         list_word = "fruit"
     if list_pick == 2:
         list = computer_parts
@@ -82,4 +77,7 @@ while run: # allowes the player to play the guessing game multipe times
 
     play_again = input("do you want to play again? if you dont type no, otherwise press enter ") # if the player types no the program ends
     if play_again == "no":
-        run = False       
+        run = False  
+
+    import os
+    os.system('cls')         
