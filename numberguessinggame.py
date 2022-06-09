@@ -4,6 +4,7 @@
 import os
 os.system('cls')
 import random
+import datetime
 
 def print_instructions(): # this function prints the instructions
     Myfile = open("numberguessinstructions.txt", "r")
@@ -12,9 +13,10 @@ def print_instructions(): # this function prints the instructions
     for line in stuff:
         print(line)
 
-def createguesssinggame(range, tries, scremax): # this function create the guessing game
+def createguesssinggame(range, tries): # this function create the guessing game
     random_number = random.randint(1, range)
     x = 0
+    score = 0
     while x < tries: 
         x +=1       
         while True:
@@ -28,7 +30,12 @@ def createguesssinggame(range, tries, scremax): # this function create the guess
             except:
                 print("Plese enter a number")
         if player_guess == random_number:
-            print("you guessed the number in "+str(x)+" tries") 
+            print("you guessed the number in "+str(x)+" tries")           
+            score = 40*(tries+1 - x)
+            print("your score is "+str(score)) 
+            break
+        if x == tries and player_guess != random_number:
+            print("you lost stupid this is an easy game")
             break
         if player_guess != random_number:
             if player_guess > random_number:
@@ -36,21 +43,24 @@ def createguesssinggame(range, tries, scremax): # this function create the guess
                 print("you have " + str(tries-x) + " tries left")  
             else:
                 print("your guess was low")    
-                print("you have " + str(tries-x) + " tries left")         
+                print("you have " + str(tries-x) + " tries left")            
+    return score  
+
+def scoreboard():
+    myFile = open("numberscore.txt","r")
+    stuff = myFile.readlines()
+    stuff.sort(reverse=True)
+    myFile.close()
+    for line in stuff:
+        print(line)  
 
 
-# createguesssinggame(25, 4, 160)
 
-
-    
-
-# createguesssinggame()
-
-# print_instructions()
-
+name = input("enter a name: ")
 Game=True
+score = 0
 while Game:
-    os.system('cls')
+
     print("|***************************************|")
     print("|         Guess a number!!!             |")
     print("|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|")
@@ -76,14 +86,26 @@ while Game:
             print("Plese enter a number")
 
     if choice == 1:
+        os.system('cls')
         print_instructions()
     if choice == 2:
-        createguesssinggame(25, 6, 240)
+        os.system('cls')
+        score = createguesssinggame(25, 4)
     if choice == 3:
-        createguesssinggame(50, 8, 320)  
+        os.system('cls')
+        score = createguesssinggame(50, 6)  
     if choice == 4:
-        createguesssinggame(100, 12, 480)   
+        os.system('cls')
+        score = createguesssinggame(100, 8)   
     if choice == 5:
-        print("print the score")   
+        os.system('cls')
+        scoreboard()   
     if choice == 6:
-        game = False        
+        os.system('cls')
+        Game = False   
+
+date = datetime.datetime.now()
+scrLile=str(score)+"\t"+date.strftime('%m / %d/ %y')+"\t"+name +"\n"
+myFile=open("numberscore.txt", 'a')
+myFile.write(scrLile)
+myFile.close()             
