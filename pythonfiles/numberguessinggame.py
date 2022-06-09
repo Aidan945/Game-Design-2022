@@ -60,6 +60,7 @@ def scoreboard(): # this function displays the top 5 scores
             break
 
 
+Highscore = 0
 level2=False
 level3=False
 name = input("enter a name: ") # gets the users name
@@ -94,26 +95,33 @@ while Game: # creates a loop for the game
     if choice == 1:
         os.system('cls')
         print_instructions() # prints the instructions
-        input("press enter to go to menu")
+        print(" ")
+        x=input("press enter to go to menu")
     if choice == 2:
         os.system('cls')
         score = createguesssinggame(25, 6) # creates the guessing game with a range of 25 and 6 tries
         if score > 0:
             level2=True
+        if score > Highscore:
+            Highscore = score
     if choice == 3:
         os.system('cls')
         if level2:
             score = createguesssinggame(50, 8) # creates the guessing game with a range of 50 and 8 tries
             if score > 0:
-                level3=True
+                level3=True        
         else:
-            print("beat the first level before you play level 2")    
+            print("beat the first level before you play level 2")   
+        if score > Highscore:
+            Highscore = score  
     if choice == 4:
         os.system('cls')
         if level3:
             score = createguesssinggame(100, 10) # creates the guessing game with a range of 100 and 10 tries
         else:
-            print("Beat the second level to play the third")    
+            print("Beat the second level to play the third") 
+        if score > Highscore:
+            Highscore = score    
     if choice == 5:
         os.system('cls')
         scoreboard()   # displays the scoreboard
@@ -122,7 +130,7 @@ while Game: # creates a loop for the game
         Game = False   # ends the game
 
 date = datetime.datetime.now()
-scrLile=str(score)+"\t"+date.strftime('%m / %d/ %y')+"\t"+name +"\n"
+scrLile=str(Highscore)+"\t"+date.strftime('%m / %d/ %y')+"\t"+name +"\n"
 myFile=open("pythonfiles/numberscore.txt", 'a') 
 myFile.write(scrLile) # adds the score to the game
 myFile.close()             
