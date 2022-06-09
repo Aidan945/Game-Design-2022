@@ -1,5 +1,4 @@
 instructions
-i 
-hi 
-hi
-instructions
+In this game you will try to guess a random number
+This number will be between 1-25, 1-50, 0r 1-100
+The faster you get the number the higher your score
