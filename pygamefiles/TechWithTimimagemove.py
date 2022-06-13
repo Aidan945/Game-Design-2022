@@ -1,3 +1,5 @@
+# Aidan Zarski 
+# Tech With tim game
 import pygame
 pygame.init()
 
