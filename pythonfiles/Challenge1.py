@@ -1,5 +1,5 @@
 # Aidan Zarski
-# Pseudocode:
+# Pseudocode for the challenge 1:
 # Create a while loop that runs 50 times
 # Check if a players list’s length is zero, if it is end the game and that player loses, also break the loop
 # Find the length of the list and check if you are at the end of the list
@@ -64,6 +64,8 @@ def playerCards():
         #done that a while ago... oh well!
     return player1, player2    
 create_DECK()
+
+# Aidans code
 decs = playerCards()
 player1 = decs[0]
 player2 = decs[1]
