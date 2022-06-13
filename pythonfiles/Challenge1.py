@@ -44,9 +44,9 @@ def create_DECK():
     counter=0
     for row in range(4):
         for col in range(13):
-            print(deck[counter], end=" ")
+            # print(deck[counter], end=" ")
             counter +=1
-        print()
+        # print()
     #now let's shuffle our deck!
 def playerCards():
     random.shuffle(deck)
@@ -76,7 +76,7 @@ while loopcount < 50:
         print("player 1 loses")
         break
     if len(player2) == 0:
-        print(" player 2 loses")
+        print("player 2 loses")
         break
     if p1_listcount > len(player1)-1:
         p1_listcount = 0
@@ -114,23 +114,17 @@ while loopcount < 50:
         player1.remove(player1[p1_listcount])
 
     if loopcount == 49:
+        print("player 1 dec:",player1)
+        print()
+        print("player 2 deck:" , player2)
+        print()
         if len(player1) > len(player2):
             print("player 1 wins")  
+        elif len(player1) < len(player2):
+            print("player 2 wins") 
         else:
-            print("player 2 wins")     
-    
-    
-
-
+            print("player 1 and player 2 tied")        
     
     p1_listcount +=1
     p2_listcount +=1
-
-
-
-
-        
-
-    
-    loopcount+=1
-    print(loopcount)
+    loopcount +=1
