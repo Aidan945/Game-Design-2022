@@ -6,12 +6,14 @@ os.system('cls')
 import random
 import datetime
 
+
 def print_instructions(): # this function prints the instructions
     Myfile = open("pythonfiles/numberguessinstructions.txt", "r")
     stuff = Myfile.readlines()
     Myfile.close()
     for line in stuff:
         print(line)
+
 
 def createguesssinggame(range, tries): # this function creates the guessing game
     random_number = random.randint(1, range)
@@ -68,6 +70,7 @@ Game=True
 score = 0
 while Game: # creates a loop for the game
 
+    os.system('cls')
     print("|***************************************|")
     print("|         Guess a number!!!             |")
     print("|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|")
@@ -96,18 +99,21 @@ while Game: # creates a loop for the game
         os.system('cls')
         print_instructions() # prints the instructions
         print(" ")
-        x=input("press enter to go to menu")
+        input("press enter to go to menu")
     if choice == 2:
         os.system('cls')
         score = createguesssinggame(25, 6) # creates the guessing game with a range of 25 and 6 tries
+        input("press enter to go to menu")
         if score > 0:
             level2=True
+            
         if score > Highscore:
             Highscore = score
     if choice == 3:
         os.system('cls')
         if level2:
             score = createguesssinggame(50, 8) # creates the guessing game with a range of 50 and 8 tries
+            input("press enter to go to menu")
             if score > 0:
                 level3=True        
         else:
@@ -118,6 +124,7 @@ while Game: # creates a loop for the game
         os.system('cls')
         if level3:
             score = createguesssinggame(100, 10) # creates the guessing game with a range of 100 and 10 tries
+            input("press enter to go to menu")
         else:
             print("Beat the second level to play the third") 
         if score > Highscore:
@@ -125,6 +132,7 @@ while Game: # creates a loop for the game
     if choice == 5:
         os.system('cls')
         scoreboard()   # displays the scoreboard
+        input("press enter to go to menu")
     if choice == 6:
         os.system('cls')
         Game = False   # ends the game
