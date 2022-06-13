@@ -18,7 +18,9 @@ pygame.display.set_caption("My first game") # title of the window
 
 # images
 bg = pygame.image.load("pygamefiles/images/bgSmaller.jpg")
+
 char = pygame.image.load("pygamefiles/images/PixelArtTutorial.png")
+
 
 
 # create a square
