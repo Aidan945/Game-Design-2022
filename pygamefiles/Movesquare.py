@@ -4,9 +4,13 @@
 from cmath import rect
 from importlib.util import spec_from_loader
 import os, pygame, time, random, math
+from turtle import title
 os.system("cls")
 pygame.init()
 
+
+TITLE_FONT = pygame.font.SysFont('comicsans',40)
+MENU_FONT = pygame.font.SysFont('comicsans',20)
 
 WIDTH = 700 # amount of pixels
 HEIGHT = 700
@@ -34,16 +38,12 @@ square = pygame.Rect(xb,yb,wb,hb)
 charx = 200
 chary = 50
 
-
-def squaremove():
-    if keys[pygame.K_a] and square.x > speed:
-        square.x -=speed
-    if keys[pygame.K_d] and square.x < (WIDTH-(wb+speed)):
-        square.x +=speed
-    if keys[pygame.K_w] and square.y>speed:
-        square.y-=speed
-    if keys[pygame.K_s] and square.y < HEIGHT-(hb+speed):
-        square.y+=speed
+def instructions():
+    Myfile = open("pygamefiles/intructions.txt", "r")
+    stuff = Myfile.readlines()
+    Myfile.close()
+    for line in stuff:
+        print(line)
 
 #create circle variables
 cx=350
@@ -55,6 +55,13 @@ yig = cy - (ibox/2)
 insSquare = pygame.Rect(xig,yig,ibox,ibox)
 
 
+
+screen.fill("white")
+Title = TITLE_FONT.render("Hello this is a game", 1, "black")
+xd = WIDTH//2-(title.get_width()//2)
+screen.blit(Title, (50,100))
+pygame.display.update()
+pygame.time.delay(3000)
 
 run=True
 while run:
