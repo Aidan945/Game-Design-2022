@@ -32,9 +32,7 @@ pygame.display.set_caption("My First Game")  #change the title of my window
 bg=pygame.image.load('PygameFiles\images\\bgSmaller.jpg')
 char = pygame.image.load('PygameFiles\images\PixelArtTutorial.png')
 char = pygame.transform.scale(char, (50, 50))
-# screen.blit(bg, (0,0))
-# pygame.display.update()
-# pygame.time.delay(5000)
+
 
 #square Var
 hb=50
@@ -66,12 +64,11 @@ insSquare=pygame.Rect(xig,yig,ibox,ibox)
 mountainSqaure = pygame.Rect(250, 320, 180, 250)
 
 #collors
-#collors
 
 buttoncolor= colors.get ("limeGreen")
 squareClr=colors.get("pink")
 circleClr=colors.get("blue")
-backgrnd=colors.get("limeGreen")
+backgrnd=colors.get("white")
 
 #Game control
 run = True
@@ -86,7 +83,7 @@ def menu():
     ymenu = 155
     Title = TITLE_FONT.render("Circle eats Square", 1, colors.get("blue"))
     xd = WIDTH//2 - (Title.get_width()//2)
-    screen.blit(Title, (xd, 100))
+    screen.blit(Title, (xd, 50))
 
     #                      x, y, width, height
     Button_1 = pygame.Rect(30, 145, 150, 50)
@@ -125,13 +122,14 @@ def menu():
                 if Button_2.collidepoint((mx, my)):
                     settings()
                 if Button_3.collidepoint((mx, my)):
-                    return True
+                    Game_1()
                 if Button_4.collidepoint((mx, my)):
-                    return True
+                    Game_1()
                 if Button_5.collidepoint((mx, my)):
                     return False
                 if Button_6.collidepoint((mx, my)):
-                    return False
+                    pygame.quit()
+                    sys.exit()
 
 def Instructions():
     #rendering text objects
@@ -143,7 +141,7 @@ def Instructions():
     screen.fill(colors.get("white"))
 
     #creating button options
-    Button_back = pygame.Rect(200, 400, 100, 50)
+    Button_back = pygame.Rect(200, 400, 130, 50)
     pygame.draw.rect(screen, colors.get("limeGreen"), Button_back)
 
 
@@ -188,14 +186,14 @@ def settings ():
     screen.fill(backgrnd)
     ymenu = 155
     xd = WIDTH//2 - (Title.get_width()//2)
-    screen.blit(Title, (xd, 100))
+    screen.blit(Title, (xd, 50))
     
     Bx= WIDTH//3
 
-    Button_Color = pygame.Rect(Bx, 150, WIDTH//4, 40)
-    Button_Background = pygame.Rect(Bx, 200, WIDTH//4, 40)
-    Button_Sizeincrease= pygame.Rect(Bx, 250, WIDTH//4, 40)
-    Button_Sizedecrease= pygame.Rect(Bx, 300, WIDTH//4, 40)
+    Button_Color = pygame.Rect(Bx, 150, WIDTH//3, 40)
+    Button_Background = pygame.Rect(Bx, 200, WIDTH//3, 40)
+    Button_Sizeincrease= pygame.Rect(Bx, 250, WIDTH//3, 40)
+    Button_Sizedecrease= pygame.Rect(Bx, 300, WIDTH//3, 40)
     
     
     pygame.draw.rect(screen, buttoncolor, Button_Color)
@@ -219,6 +217,7 @@ def settings ():
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 menu ()
+                
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousepos = pygame.mouse.get_pos()
                 mx=mousepos[0]
@@ -230,17 +229,22 @@ def settings ():
                     backgrnd=(random.randint(0,255),random.randint(0,255), random.randint(0,255))
                 if Button_Sizeincrease.collidepoint(mx, my):
                     WIDTH+=100
-                    screen= pygame.display.set_mode((WIDTH,HEIGHT))
-                    screen.fill(backgrnd)
+                    
+
+                    # screen= pygame.display.set_mode((WIDTH,HEIGHT))
+                    
                 if Button_Sizedecrease.collidepoint(mx, my) and WIDTH >500:
                     WIDTH -=100
-                    
+  
                 screen= pygame.display.set_mode((WIDTH,HEIGHT))
                 screen.fill(backgrnd)
-                Button_Color = pygame.Rect(Bx, 150, WIDTH//4, 40)
-                Button_Background = pygame.Rect(Bx, 200, WIDTH//4, 40)
-                Button_Sizeincrease= pygame.Rect(Bx, 250, WIDTH//4, 40)
-                Button_Sizedecrease= pygame.Rect(Bx, 300, WIDTH//4, 40)
+                xd = WIDTH//2 - (Title.get_width()//2)
+                Bx = WIDTH//3  
+                screen.blit(Title, (xd, 50))
+                Button_Color = pygame.Rect(Bx, 150, WIDTH//3, 40)
+                Button_Background = pygame.Rect(Bx, 200, WIDTH//3, 40)
+                Button_Sizeincrease= pygame.Rect(Bx, 250, WIDTH//3, 40)
+                Button_Sizedecrease= pygame.Rect(Bx, 300, WIDTH//3, 40)
                 pygame.draw.rect(screen, buttoncolor, Button_Color)
                 pygame.draw.rect(screen, buttoncolor, Button_Background)
                 pygame.draw.rect(screen, buttoncolor, Button_Sizeincrease)
@@ -250,75 +254,78 @@ def settings ():
                 screen.blit(sizeincrease, (WIDTH//2 - (sizeincrease.get_width()//2), 260))
                 screen.blit(sizedecrease, (WIDTH//2 - (sizedecrease.get_width()//2), 310))  
                 pygame.display.update() 
-                print("hi") 
 
-run = menu()
-
-while run:
+def Game_1 ():
+    global run, insSquare, charx, chary, cx, cy, rad
+    while run:
     # screen.fill(backgrnd)
-    for event in pygame.event.get():
-        if event.type==pygame.QUIT:
-            run=False
-            print("Y quit")
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mousePos = pygame.mouse.get_pos()
-            mx = mousePos[0]
-            my = mousePos[1]
-            # print(mousePos)
-    
-    pygame.draw.rect(screen, colors.get("white"), mountainSqaure)
-    screen.blit(bg, (0,0))
-    keys= pygame.key.get_pressed() #this is a list
-    #mve square
-    if keys[pygame.K_RIGHT] and square.x < WIDTH -(wb):
-        square.x += speed
-        charx += speed
-    if keys[pygame.K_LEFT] and  square.x > speed:
-        square.x -= speed
-        charx -= speed
-    if keys[pygame.K_UP] and square.y >speed:   #means clser t 0
-        square.y -= speed
-        chary -= speed
-    if keys[pygame.K_DOWN] and square.y <HEIGHT -hb:  #means clser t max value HEIGHT
-        square.y += speed
-        chary += speed
-        #mve Circle
-    if keys[pygame.K_d] and cx < WIDTH -(rad):
-        cx += speed
-        insSquare.x += speed
-    if keys[pygame.K_a] and  cx > (speed+rad):
-        cx -= speed
-        insSquare.x -= speed
-    if keys[pygame.K_w] and cy >(speed+rad):   #means clser t 0
-        cy -= speed
-        insSquare.y -= speed
-    if keys[pygame.K_s] and cy <HEIGHT -(rad):  #means clser t max value HEIGHT
-        cy += speed
-        insSquare.y += speed
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                menu()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mousePos = pygame.mouse.get_pos()
+                mx = mousePos[0]
+                my = mousePos[1]
+                # print(mousePos)
+        
+        pygame.draw.rect(screen, colors.get("white"), mountainSqaure)
+        screen.blit(bg, (0,0))
+        keys= pygame.key.get_pressed() #this is a list
+        #mve square
+        if keys[pygame.K_RIGHT] and square.x < WIDTH -(wb):
+            square.x += speed
+            charx += speed
+        if keys[pygame.K_LEFT] and  square.x > speed:
+            square.x -= speed
+            charx -= speed
+        if keys[pygame.K_UP] and square.y >speed:   #means clser t 0
+            square.y -= speed
+            chary -= speed
+        if keys[pygame.K_DOWN] and square.y <HEIGHT -hb:  #means clser t max value HEIGHT
+            square.y += speed
+            chary += speed
+            #mve Circle
+        if keys[pygame.K_d] and cx < WIDTH -(rad):
+            cx += speed
+            insSquare.x += speed
+        if keys[pygame.K_a] and  cx > (speed+rad):
+            cx -= speed
+            insSquare.x -= speed
+        if keys[pygame.K_w] and cy >(speed+rad):   #means clser t 0
+            cy -= speed
+            insSquare.y -= speed
+        if keys[pygame.K_s] and cy <HEIGHT -(rad):  #means clser t max value HEIGHT
+            cy += speed
+            insSquare.y += speed
 
-    if square.colliderect(insSquare):
-        print("BOOM")
-        rad+=1
-        cx=random.randint(rad, WIDTH-rad)
-        cy=random.randint(rad, HEIGHT-rad)
-        ibox = rad*math.sqrt(2)
-        xig = cx-(ibox/2)
-        yig = cy-(ibox/2)
-        insSquare=pygame.Rect(xig,yig,ibox,ibox)
-    
-    if square.colliderect(mountainSqaure):
-        square.x = 10
-        square.y = 10
-        charx = 10
-        chary = 10
+        if square.colliderect(insSquare):
+            print("BOOM")
+            rad+=1
+            cx=random.randint(rad, WIDTH-rad)
+            cy=random.randint(rad, HEIGHT-rad)
+            ibox = rad*math.sqrt(2)
+            xig = cx-(ibox/2)
+            yig = cy-(ibox/2)
+            insSquare=pygame.Rect(xig,yig,ibox,ibox)
+        
+        if square.colliderect(mountainSqaure):
+            square.x = 10
+            square.y = 10
+            charx = 10
+            chary = 10
 
-    #rect(surface, color, rect) -> Rect
-    pygame.draw.rect(screen, squareClr,square)
-    screen.blit(char, (charx, chary))
+        #rect(surface, color, rect) -> Rect
+        pygame.draw.rect(screen, squareClr,square)
+        screen.blit(char, (charx, chary))
 
-    #circle(surface, color, center, radius)
-    pygame.draw.rect(screen, squareClr, insSquare)
-    pygame.draw.circle(screen, circleClr, (cx,cy), rad)
+        #circle(surface, color, center, radius)
+        pygame.draw.rect(screen, squareClr, insSquare)
+        pygame.draw.circle(screen, circleClr, (cx,cy), rad)
 
-    pygame.display.update()
-    pygame.time.delay(5)
+        pygame.display.update()
+        pygame.time.delay(5)
+
+menu()
+
+
+
