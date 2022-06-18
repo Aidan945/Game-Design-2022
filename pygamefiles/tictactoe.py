@@ -13,11 +13,7 @@ os.system('cls')
 
 pygame.init()
 
-TITLE_FONT = pygame.font.SysFont('comicsans', 100)
-MENU_FONT = pygame.font.SysFont('comicsans', 30)
 
-WIDTH=700 #like constant
-HEIGHT=700
 colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(153,255,51),
 "RED" : (255, 0, 0),
 "GREEN" : (0, 255, 0),
@@ -607,6 +603,11 @@ messageMenu=['Instructions', 'Settings', 'Game 1', 'Game 2', 'Scoreboard', 'Exit
 messageSettings=["Background Colors", "Screen Size", "Sound On/Off"]
 mainTitle="Circle eats Square Menu"
 #create dispay wind with any name y like
+TITLE_FONT = pygame.font.SysFont('comicsans', 100)
+MENU_FONT = pygame.font.SysFont('comicsans', 30)
+
+WIDTH=700 #like constant
+HEIGHT=700
 screen=pygame.display.set_mode((WIDTH,HEIGHT)) 
 pygame.display.set_caption("Tic Tac Te")  #change the title of my window
 backgrnd=colors.get("pink")

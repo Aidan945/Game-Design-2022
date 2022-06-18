@@ -610,12 +610,8 @@ colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(1
 }
 
 
-
+# name variable
 user_name = ""
-
-# create title
-# create your box related to WIDTH and HEIGHT
-
 
 #rendering text objects
 
@@ -623,12 +619,11 @@ Title = TITLE_FONT.render("Input your name", 1, colors.get("blue"))
 text1 = MENU_FONT.render("enter your name in the green box", 1, colors.get("blue"))
 user_text = MENU_FONT.render(user_name,1, colors.get("BLACK"))
 
-
 #fills screen with white
 screen.fill(colors.get("white"))
 
 
-    #renderig fonts to the screen
+# renderig fonts to the screen
 xd = WIDTH//2 - (Title.get_width()//2)
 screen.blit(Title, (xd, 50))
 text1_x = WIDTH//2 - (text1.get_width()//2)
