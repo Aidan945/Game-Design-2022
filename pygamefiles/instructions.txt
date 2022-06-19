@@ -1,3 +1,4 @@
-In this game we need to use 
-the arrow keys to move the circle 
-to move the square use W, A ,S, D 
+In this game we need to use A to go left, D to go right, Space to jump
+You can select your player and and the block texture
+You start at level 1 and have to make it to level 5
+Try to do this in the least number of tries  

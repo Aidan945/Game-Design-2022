@@ -2,7 +2,8 @@
 from ast import Return
 from glob import glob
 from itertools import count
-import pygame, time,os,random, math, sys
+from turtle import title
+import pygame, time,os,random, math, sys, datetime
 pygame.init()
 os.system('cls')
 
@@ -85,6 +86,7 @@ screen=pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 
 TITLE_FONT = pygame.font.SysFont('comicsans', 40)
 MENU_FONT = pygame.font.SysFont('comicsans', 20)
+
 
 
 colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(153,255,51),
@@ -724,7 +726,7 @@ Game = False
 speed=2
 
 #Menu items
-message = ["Instructions", "Setting", "Game","Game", "Scoreboard", "Exit"]
+message = ["Instructions", "Setting", "Game","Scoreboard", "Exit", "Exit"]
 
 def menu():
     screen.fill(colors.get("white"))
@@ -753,8 +755,8 @@ def menu():
         pygame.display.update()
         pygame.time.delay(50)
         ymenu += 50
-    
-    while True:
+    run = True
+    while run:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 pygame.quit()
@@ -768,14 +770,35 @@ def menu():
                 if Button_2.collidepoint((mx, my)):
                     settings()
                 if Button_3.collidepoint((mx, my)):
-                    game()
+                    run = False 
+                    Title = TITLE_FONT.render("Loading...", 1, colors.get("blue"))
+                    screen.blit(Title,(50,50))
+                    pygame.draw.rect(screen, "blue", Button_3)        
+
                 if Button_4.collidepoint((mx, my)):
-                    return True
+                    scoreboard()
                 if Button_5.collidepoint((mx, my)):
-                    return False
+                    pygame.quit()
+                    sys.exit()
                 if Button_6.collidepoint((mx, my)):
                     pygame.quit()
                     sys.exit()
+
+            screen.fill(colors.get("white"))
+            screen.blit(Title, (xd, 50))
+            ymenu = 155
+            pygame.draw.rect(screen, colors.get("limeGreen"), Button_1)
+            pygame.draw.rect(screen, colors.get("limeGreen"), Button_2)
+            pygame.draw.rect(screen, colors.get("limeGreen"), Button_3)
+            pygame.draw.rect(screen, colors.get("limeGreen"), Button_4)
+            pygame.draw.rect(screen, colors.get("limeGreen"), Button_5)
+            pygame.draw.rect(screen, colors.get("limeGreen"), Button_6)  
+            for item in message:
+                text = MENU_FONT.render(item, 1, colors.get('blue'))
+                screen.blit(text, (40, ymenu))
+                ymenu += 50    
+            
+            pygame.display.update()          
 
 def Instructions():
     #rendering text objects
@@ -814,18 +837,20 @@ def Instructions():
 
     pygame.display.update()
     
-    while True:
+    run = True
+    while run:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
-                menu()
+                run = False
+                
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousePos = pygame.mouse.get_pos()
                 mx = mousePos[0]
                 my = mousePos[1]
                 if Button_back.collidepoint((mx, my)):
-                    menu()
-                    
+                    run = False
+                                     
 def settings ():
     global SCREEN_WIDTH, SCREEN_HEIGHT, backgrnd, screen, buttoncolor
     Title = TITLE_FONT.render("Circle eats Square", 1, colors.get("blue"))
@@ -858,11 +883,12 @@ def settings ():
     screen.blit(sizeincrease, (SCREEN_WIDTH//2 - (sizeincrease.get_width()//2), 260))
     screen.blit(sizedecrease, (SCREEN_WIDTH//2 - (sizedecrease.get_width()//2), 310))
     pygame.display.update()
-
-    while True:
+    run = True
+    while run:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
-                menu ()
+                run = False
+       
                 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousepos = pygame.mouse.get_pos()
@@ -900,7 +926,57 @@ def settings ():
                 screen.blit(sizeincrease, (SCREEN_WIDTH//2 - (sizeincrease.get_width()//2), 260))
                 screen.blit(sizedecrease, (SCREEN_WIDTH//2 - (sizedecrease.get_width()//2), 310))  
                 pygame.display.update() 
+           
+def scoreboard():
+    #rendering text objects
+    Title = TITLE_FONT.render("Scoreboard", 1, colors.get("blue"))
+    text1 = MENU_FONT.render("Go back", 1, colors.get("blue"))
 
+
+    #fills screen with white
+    screen.fill(colors.get("white"))
+
+    #creating button options
+    Button_back = pygame.Rect(200, 400, 130, 50)
+    pygame.draw.rect(screen, colors.get("limeGreen"), Button_back)
+
+
+    #Instructions
+    myFile = open("scoreboard.txt", "r")
+    content = myFile.readlines()
+
+    #var to controll change of line
+    yinstructions = 150
+    for line in content:
+        Instruc = MENU_FONT.render(line[0:-1], 1, colors.get("blue"))
+        screen.blit(Instruc, (40, yinstructions))
+        pygame.display.update()
+        pygame.time.delay(50)
+        yinstructions += 40
+
+    myFile.close()
+
+    #renderig fonts to the screen
+    xd = SCREEN_WIDTH//2 - (Title.get_width()//2)
+    screen.blit(Title, (xd, 50))
+    screen.blit(text1, (225, 410))
+
+
+    pygame.display.update()
+    
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                run = False
+                
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mousePos = pygame.mouse.get_pos()
+                mx = mousePos[0]
+                my = mousePos[1]
+                if Button_back.collidepoint((mx, my)):
+                    run = False
 
 
 
@@ -1164,6 +1240,7 @@ class Level:
         self.player_on_ground = False
 
     def setup_level(self, layout): # this function sets up the level using the layout.
+        global block_count, player_count
         self.player = pygame.sprite.GroupSingle() # creates a single sprite group for the player
         self.tiles = pygame.sprite.Group() # creates a sprite group for the tiles.
         self.death_tiles = pygame.sprite.Group() # creats a sprite group with tiles that kill the player when they collide
@@ -1174,7 +1251,7 @@ class Level:
                 x = col_index * TILE_SIZE
                 y = row_index * TILE_SIZE
                 if val == 'X': 
-                    tile = Default_Tile(2, (x, y), TILE_SIZE) # this creates a square tile
+                    tile = Default_Tile(block_count, (x, y), TILE_SIZE) # this creates a square tile
                     self.tiles.add(tile)
                 if val == "L":
                     tile = Floating_tile((x, y), TILE_SIZE) # this creates a floating tile that moves up and down
@@ -1194,7 +1271,7 @@ class Level:
 
 
                 if val == 'P':
-                    player = Player(2, x, y)
+                    player = Player(player_count, x, y)
                     self.player.add(player) # this creates the player sprite
                     
     def scroll_horizontal(self): # this function moves the level horizontaly 
@@ -1361,7 +1438,7 @@ def show_deathcount():
     Title = TITLE_FONT.render("Death Count: "+str(death_count-1), 1, "black") # Displays the deathcount
     screen.blit(Title, (20, 20)) # puts the deathcount at the top left of the screen
     
-death_count = 0 # counts the deaths
+death_count = -1 # counts the deaths
 
 
 def show_coin_count():
@@ -1378,95 +1455,228 @@ def show_level_count():
     xd = SCREEN_WIDTH - (Title.get_width()+30) # centers the text on the screen
     screen.blit(Title, (xd, 20)) 
 
+File_update = True
 def exit_screen(): # runs after the last level is beat
-    global death_count
+    global death_count, name, File_update
     TITLE_FONT = pygame.font.SysFont('comicsans', 90)
     Title = TITLE_FONT.render("You Beat all five levels!",1,"white") 
     xd = SCREEN_WIDTH//2 - (Title.get_width()//2) # centers the text on the screen
-    deaths_show = TITLE_FONT.render("You died "+str(death_count)+" times!",1,"white") 
+    deaths_show = TITLE_FONT.render("You died "+str(death_count-1)+" times!",1,"white") 
     xs = SCREEN_WIDTH//2 - (deaths_show.get_width()//2) # centers the text on the screen
     screen.blit(BRICKS_BG, (0,0))
     screen.blit(Title, (xd, 20))
     screen.blit(deaths_show,(xs, 200)) 
 
+    if File_update:
+        date=datetime.datetime.now()
+        scoreLine="Deaths: "+str(death_count-1)+ "    "+name+"    " +date.strftime("%m/%d/%Y")+'\n' #turning the string into a score
+        myfile=open('scoreboard.txt','a')
+        myfile.write(scoreLine)
+        myfile.close()
+        File_update = False
+
+
+player_count = 2
+block_count = 2
+
+display_number = 1
 def opening_screen():
-    TITLE_FONT = pygame.font.SysFont('comicsans', 90)
-    Title = TITLE_FONT.render("Select a character",1,"white") 
-    xd = SCREEN_WIDTH//2 - (Title.get_width()//2) # centers the text on the screen
-    santa_sheet = pygame.image.load("pygamefiles/images/Santa_character.png")
-    santa_image = get_image(santa_sheet, 1, 2, 48, 64, 5, "black")
-    santa_rect = santa_image.get_rect(topleft=(50,300))
+    global display_number, level_count, player_count, block_count, run
 
-    screen.blit(BRICKS_BG, (0,0))
-    screen.blit(Title, (xd, 20))
-    
-    
-menu()
 
-def game():
 
-    level_count = 1
+    if display_number == 1:
+        TITLE_FONT = pygame.font.SysFont('comicsans', 90)
+        Title = TITLE_FONT.render("Select a character",1,"white") 
+        xd = SCREEN_WIDTH//2 - (Title.get_width()//2) # centers the text on the screen
 
-    while True:
+        santa_sheet = pygame.image.load("pygamefiles/images/Santa_character.png")
+        santa_image = get_image(santa_sheet, 1, 2, 48, 64, 8, "black")
+        santax = SCREEN_WIDTH//2 - (santa_image.get_width()//2)
+        santa_rect = santa_image.get_rect(topleft=(santax-250,200))
+
+        priest_sheet = pygame.image.load("pygamefiles/images/priestsheet.png")
+        priest_image = get_image(priest_sheet, 1, 2, 48, 64, 8, "black")
+        priestx = SCREEN_WIDTH//2 - (priest_image.get_width()//2)
+        priest_rect = priest_image.get_rect(topleft=(priestx+250,200))
+
+        screen.blit(BRICKS_BG, (0,0))
+        screen.blit(Title, (xd, 20))
+        screen.blit(santa_image,(santa_rect.x,santa_rect.y))
+        screen.blit(priest_image,(priest_rect.x,priest_rect.y))
+        for event in pygame.event.get():         
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mousepos = pygame.mouse.get_pos()
+                mx=mousepos[0]
+                my=mousepos[1]
+                if santa_rect.collidepoint(mx,my):
+                    display_number +=1
+                    player_count = 1
+                if priest_rect.collidepoint(mx,my): 
+                    display_number +=1
+                    player_count = 2  
+
+    if display_number == 2:
+        TITLE_FONT = pygame.font.SysFont('comicsans', 90)
+        Title = TITLE_FONT.render("Select a block!",1,"white") 
+        xd = SCREEN_WIDTH//2 - (Title.get_width()//2) # centers the text on the screen
+
+        block_sheet = pygame.image.load("pygamefiles/images/manybricks.png")
+        green_blocks = get_image(block_sheet, 1, 1, 16, 16, 16, "black")
+        greenx = SCREEN_WIDTH//2 - (green_blocks.get_width()//2)
+        green_rect = green_blocks.get_rect(topleft=(greenx-250,200))
+
+
+        pink_blocks = get_image(block_sheet, 1, 5, 16, 16, 16, "black")
+        pinkx = SCREEN_WIDTH//2 - (pink_blocks.get_width()//2)
+        pink_rect = pink_blocks.get_rect(topleft=(pinkx+250,200))
+
+        screen.blit(BRICKS_BG, (0,0))
+        screen.blit(Title, (xd, 20))
+        screen.blit(green_blocks,(green_rect.x,green_rect.y))
+        screen.blit(pink_blocks,(pink_rect.x,pink_rect.y))
+        for event in pygame.event.get():         
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mousepos = pygame.mouse.get_pos()
+                mx=mousepos[0]
+                my=mousepos[1]
+                if green_rect.collidepoint(mx,my):
+                    block_count = 2
+                    run = False
+                    level_count +=1
+                    
+                if pink_rect.collidepoint(mx,my): 
+                    block_count = 1
+                    run = False
+                    level_count +=1   
+
+def input_name():
+    # name variable
+    user_name = ""
+
+    #rendering text objects
+
+    Title = TITLE_FONT.render("Input your name", 1, colors.get("blue"))
+    text1 = MENU_FONT.render("enter your name in the green box", 1, colors.get("blue"))
+    user_text = MENU_FONT.render(user_name,1, colors.get("BLACK"))
+
+    #fills screen with white
+    screen.fill(colors.get("white"))
+
+
+    # renderig fonts to the screen
+    xd = SCREEN_WIDTH//2 - (Title.get_width()//2)
+    screen.blit(Title, (xd, 50))
+    # text1_x = WIDTH//2 - (text1.get_width()//2)
+    # screen.blit(text1, (text1_x, 350))
+
+    # creats the box for typing
+    botton_box_x = SCREEN_WIDTH//2 - SCREEN_WIDTH//4
+    Button_box = pygame.Rect(botton_box_x, 400, SCREEN_WIDTH//2, 50)
+    pygame.draw.rect(screen, colors.get("limeGreen"), Button_box)
+
+    pygame.display.update()
         
-        coin_count = 0 # counts the coins collected
-        all_coins_collected = False #    
-
-        
-        Level_1 = Level(level_map_1, screen) # creates the level 1 
-        Level_2 = Level(level_map_2, screen) # creates the level 2
-        level_3 = Level(level_map_3, screen) # creates the level 3
-        level_4 = Level(level_map_4, screen) # creates the level 4
-        level_5 = Level(level_map_5, screen) # creates the level 5
-
-
-        death_count += 1 # adds one to the death count
-
-        clock = pygame.time.Clock()
-        FPS = 60
-        run = True
-        while run:
-            clock.tick(FPS)
+    run = True    
+    while run:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type==pygame.QUIT:
+                    print(user_name)
                     pygame.quit()
                     sys.exit()
 
-            if level_count == 0:
-                opening_screen()        
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mousePos = pygame.mouse.get_pos()
+                    mx = mousePos[0]
+                    my = mousePos[1]
+                    
 
-            coin_amount = 0 # variable for the amount of coins on the layout
-            if level_count == 1: # runs when level_count is equal to 1  
-                coin_amount = count_layout_coins(level_map_1) # sets the coin amount equal to the number of coins in the level
-                screen.blit(CLOUD_BG,(0,0))        
-                Level_1.run()
-            if level_count == 2: # runs when level_count is equal to 2
-                coin_amount = count_layout_coins(level_map_2) # sets the coin amount equal to the number of coins in the level
-                screen.blit(FOREST_BG, (0,0))
-                Level_2.run() 
-            if level_count == 3: # runs when level_count is equal to 3
-                coin_amount = count_layout_coins(level_map_3)
-                screen.blit(SEA_BG, (0,0))
-                level_3.run()
-            if level_count == 4: # runs when level_count is equal to 4
-                coin_amount = count_layout_coins(level_map_4)
-                screen.blit(CYBERPUNK_BG, (0,0))
-                level_4.run()
-            if level_count == 5: # runs when level_count is equal to 5
-                coin_amount = count_layout_coins(level_map_5)
-                screen.blit(GRASS_BG, (0,0))
-                level_5.run()  
-            if level_count == 6:# runs the exit screen if level_count is equal to 6
-                exit_screen()          
+                if event.type == pygame.KEYDOWN:
+                    if event.key ==  pygame.K_RETURN: # enter the name
+                        run = False
+                        print(user_name) 
+                    if event.key == pygame.K_BACKSPACE: # remove the last letter of the name
+                        user_name = user_name[0:len(user_name)-1]
+                    elif event.key != pygame.K_RETURN: # add the character to the end of the string
+                        user_name += event.unicode 
 
-            # displays the text at the top on the screen  
-            if level_count < 6 and level_count > 0:     
-                show_deathcount()
-                show_coin_count()
-                show_level_count()
+                    pygame.draw.rect(screen, colors.get("limeGreen"), Button_box)
+                    user_text = MENU_FONT.render(user_name,1, colors.get("BLACK"))
+                    screen.blit(user_text, (botton_box_x + 20, 410))
+                    pygame.display.update()       # updates the screen
+    return user_name                
+
+name = input_name()
+menu()
+
+CLOUD_BG = get_background_image("pygamefiles/images/clouds.jpg")
+GRASS_BG = get_background_image("pygamefiles/images/grass background.jpg")
+FOREST_BG = get_background_image("pygamefiles/images/forest.jpg")
+PURPLESTAR_BG = get_background_image("pygamefiles/images/purple.jpg")
+SEA_BG = get_background_image("pygamefiles/images/sea.jpg")
+CYBERPUNK_BG = get_background_image("pygamefiles/images/cyberpunk background.jpg")
+BRICKS_BG = get_background_image("pygamefiles/images/manybricks.png")
+
+level_count = 0
+
+while True:
+    
+    coin_count = 0 # counts the coins collected
+    all_coins_collected = False #    
+
+    
+    Level_1 = Level(level_map_1, screen) # creates the level 1 
+    Level_2 = Level(level_map_2, screen) # creates the level 2
+    level_3 = Level(level_map_3, screen) # creates the level 3
+    level_4 = Level(level_map_4, screen) # creates the level 4
+    level_5 = Level(level_map_5, screen) # creates the level 5
 
 
-            pygame.display.update()
+    death_count += 1 # adds one to the death count
+
+    clock = pygame.time.Clock()
+    FPS = 60
+    run = True
+    while run:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        if level_count == 0:
+            opening_screen()        
+        coin_amount = 0 # variable for the amount of coins on the layout
+        if level_count == 1: # runs when level_count is equal to 1  
+            coin_amount = count_layout_coins(level_map_1) # sets the coin amount equal to the number of coins in the level
+            screen.blit(CLOUD_BG,(0,0))        
+            Level_1.run()
+        if level_count == 2: # runs when level_count is equal to 2
+            coin_amount = count_layout_coins(level_map_2) # sets the coin amount equal to the number of coins in the level
+            screen.blit(FOREST_BG, (0,0))
+            Level_2.run() 
+        if level_count == 3: # runs when level_count is equal to 3
+            coin_amount = count_layout_coins(level_map_3)
+            screen.blit(SEA_BG, (0,0))
+            level_3.run()
+        if level_count == 4: # runs when level_count is equal to 4
+            coin_amount = count_layout_coins(level_map_4)
+            screen.blit(CYBERPUNK_BG, (0,0))
+            level_4.run()
+        if level_count == 5: # runs when level_count is equal to 5
+            coin_amount = count_layout_coins(level_map_5)
+            screen.blit(GRASS_BG, (0,0))
+            level_5.run()  
+        if level_count == 6:# runs the exit screen if level_count is equal to 6
+            exit_screen()      
+
+        # displays the text at the top on the screen  
+        if level_count < 6 and level_count > 0:     
+            show_deathcount()
+            show_coin_count()
+            show_level_count()
+
+        pygame.display.update()
 
 
-            
+        
