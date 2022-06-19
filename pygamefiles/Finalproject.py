@@ -12,70 +12,70 @@ level_map_1 = [
 '                                                                                                                                      ', 
 '                                                                                                                                      ',
 '                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'         P CC                                                L    L    L    L    XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX',
-'         XXXX                                           XX                                                                            ',
-'         XXXX    CCCCCCC   X  CCCCC    E          XXXX                                                                                ',
-'         XX      XXXXXXX      XXXXX         XX                                                                                        ',
+'                                                                                                                           E          ',
+'                                                             CC   CC   CC   CC   CCC  CCC  CCC  CCC  CCC  CCC  CCC  CCC                ',
+'         P CC                                           CC   L    L    L    L    XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX          ',
+'         XXXX                                     CCCC  XX                                                                            ',
+'         XXXX    CCCCCCC   X  CCCCC         CC    XXXX                                                                                ',
+'         XX      XXXXXXX      XXXXX   CCC   XX                                                                                        ',
 '                 XXXXXXX      XXXX    XXX                                                                                             ',
 '                 XXXXXXX      XXXX                                                                                                    ',
 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD']
 level_map_2 = [
-'                                                                                                                                      ',
-'                                                                                                                                      ', 
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'         P                                        E          L    L    L    L    XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX',
-'         XXXX                                           X                                                                             ',
-'         XXXX        CCC   X  CCCCC               XXXX                                                                                ',
-'         XX      XXXXXXX      XXXXX          XX                                                                                       ',
-'                 XXXXXXX      XXXX    XXX                                                                                             ',
-'                 XXXXXXX      XXXX                                                                                                    ',
+'                                                                                                                                     D',
+'                                                                                                                                     D', 
+'                                                                                                                                     D',
+'                                                                                                                                     D',
+'                                                              CCCC                                                          E        D',
+'                                                            C XXXX    CC   CC   CC  CC  CC  CC       CCC  CCC    CC   CC        CCC  D',
+'         P                                              C   X         L    L    XX  XX  XX  XX   C   XXX  XXX    L    L   XXXXXXXXX  D',
+'             CC                                   CCCC  X                                        X                                   D',
+'        L    L    CCCCCC   X  CCCCC          CC   XXXX                                                                               D',
+'                 XXXXXXX      XXXXX   CCC    XX                                                                                      D',
+'                 XXXXXXX      XXXX    XXX                                                                                            D',
+'                 XXXXXXX      XXXX                                                                                                   D',
 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD']
 level_map_3 = [
-'                                                                                                                                      ',
-'                                                                                                                                      ', 
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'         P CC                                      E         L    L    L    L    XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX',
-'         XXXX                                           X                                                                             ',
-'         XXXX    CCCCCCC   X  CCCCC               XXXX                                                                                ',
-'         XX      XXXXXXX      XXXXX          XX                                                                                       ',
-'                 XXXXXXX      XXXX    XXX                                                                                             ',
-'                 XXXXXXX      XXXX                                                                                                    ',
+'D                                                                                                                                     ',
+'D                                                                                                                                     ', 
+'D                                                                                                                                     ',
+'D     P                                         CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC                                             ',
+'D    XXX                                        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                             ',
+'D                                               X                                                                                     ',
+'D          L                                 L  X  E                                                                                  ',
+'D                   C                    CC     X       CC                                                                           ',
+'D                CCC CCC      CCCC       L      XXXXXXXXXXX  L         CC  CC   CCCCC                                                 ',
+'D                XXX XXX  CC  XXXX   CC                           L    L   L    XXXXX   L                                             ',
+'D                XXX XXX  L   XXXX   L                                                                                                ',
+'D                XXX XXX      XXXX                                                                                                    ',
 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD']
 level_map_4 = [
-'                                                                                                                                      ',
-'                                                                                                                                      ', 
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'         P CC                                                L    L    L    L    XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX',
-'         XXXX                                           XX                                                                            ',
-'         XXXX    CCCCCCC   X  CCCCC    E          XXXX                                                                                ',
-'         XX      XXXXXXX      XXXXX         XX                                                                                        ',
-'                 XXXXXXX      XXXX    XXX                                                                                             ',
-'                 XXXXXXX      XXXX                                                                                                    ',
+'D                                                                                                                                     ',
+'D                                                                                                                                     ', 
+'D                                                                                     CC                    CC  CCCCCCCCCC            ',
+'D                        CC   CC  CC  CC  CCC  CC  CCC   CCC  CC  CC  CC  XXX    CC   XX   CC  CCC  CCCCCC  L   XXXXXXXXXX            ',
+'D                        L    L   L   L   XXX  L   XXX   XXX  L   L   L   XXX    XX        XX  XXX  XXXXXX               D            ',
+'D                     CC                                                                                                 D            ',
+'D                     XX                                                                                                 D            ',
+'D         P         X                                                                                                    D            ',
+'D        XXXXXXXXXXXXDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD            ',
+'D        XX    E                                                                                                                      ',
+'D                  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC              ',
+'D            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX        ',
 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD']
 level_map_5 = [
-'                                                                                                                                      ',
-'                                                                                                                                      ', 
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'                                                                                                                                      ',
-'         P CC                                                L    L    L    L    XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX  XXX',
-'         XXXX                                           XX                                                                            ',
-'         XXXX    CCCCCCC   X  CCCCC    E          XXXX                                                                                ',
-'         XX      XXXXXXX      XXXXX         XX                                                                                        ',
-'                 XXXXXXX      XXXX    XXX                                                                                             ',
-'                 XXXXXXX      XXXX                                                                                                    ',
+'D                                                                                                                                    D',
+'D                                                                                                                                    D', 
+'D                                                                                                                                    D',
+'D                                                                                                                                    D',
+'D                                                                                                                         XXX        D',
+'D                                    CC   CC   CC           L   L   L   L                                             XX    D        D',
+'D                   C  L             XX   XX   XX        C                  L                                    XX         D        D',
+'D   P               X             X                 L    X                      L    X  L  X    L    X    L    X            D        D',
+'DXXXXXXXXDDXXDDXDDXXXXXDDDDDXXXXXXDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD        D',
+'DE                                                                                                                                   D',
+'D  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC   D',
+'DXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXD',
 'DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD']
 
 TILE_SIZE = 64
@@ -726,12 +726,12 @@ Game = False
 speed=2
 
 #Menu items
-message = ["Instructions", "Setting", "Game","Scoreboard", "Exit", "Exit"]
+message = ["Instructions", "Setting", "Game","Scoreboard", "Exit"]
 
 def menu():
     screen.fill(colors.get("white"))
     ymenu = 155
-    Title = TITLE_FONT.render("Circle eats Square", 1, colors.get("blue"))
+    Title = TITLE_FONT.render("Game Menu", 1, colors.get("blue"))
     xd = SCREEN_WIDTH//2 - (Title.get_width()//2)
     screen.blit(Title, (xd, 50))
 
@@ -741,13 +741,13 @@ def menu():
     Button_3 = pygame.Rect(30, 245, 150, 50)
     Button_4 = pygame.Rect(30, 295, 150, 50)
     Button_5 = pygame.Rect(30, 345, 150, 50)
-    Button_6 = pygame.Rect(30, 395, 150, 50)
+
     pygame.draw.rect(screen, colors.get("limeGreen"), Button_1)
     pygame.draw.rect(screen, colors.get("limeGreen"), Button_2)
     pygame.draw.rect(screen, colors.get("limeGreen"), Button_3)
     pygame.draw.rect(screen, colors.get("limeGreen"), Button_4)
     pygame.draw.rect(screen, colors.get("limeGreen"), Button_5)
-    pygame.draw.rect(screen, colors.get("limeGreen"), Button_6)
+
 
     for item in message:
         text = MENU_FONT.render(item, 1, colors.get('blue'))
@@ -780,9 +780,7 @@ def menu():
                 if Button_5.collidepoint((mx, my)):
                     pygame.quit()
                     sys.exit()
-                if Button_6.collidepoint((mx, my)):
-                    pygame.quit()
-                    sys.exit()
+        
 
             screen.fill(colors.get("white"))
             screen.blit(Title, (xd, 50))
@@ -792,7 +790,7 @@ def menu():
             pygame.draw.rect(screen, colors.get("limeGreen"), Button_3)
             pygame.draw.rect(screen, colors.get("limeGreen"), Button_4)
             pygame.draw.rect(screen, colors.get("limeGreen"), Button_5)
-            pygame.draw.rect(screen, colors.get("limeGreen"), Button_6)  
+  
             for item in message:
                 text = MENU_FONT.render(item, 1, colors.get('blue'))
                 screen.blit(text, (40, ymenu))
